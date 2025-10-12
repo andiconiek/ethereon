@@ -1,5 +1,5 @@
 if game.GameId == 135406051460913 or game.PlaceId == 135406051460913 or game.GameId == 8355209732 or game.PlaceId == 8355209732 then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/AndreyTheDev/sigma/main/sigma.runhidefight/main.lua"))()
+    loadstring(game:HttpGet("https://ethereon.downy.press/RHF-Content.lua"))()
 else
     print("[Ethereon]: Wrong place | GameId: " .. game.GameId .. " | PlaceId: " .. game.PlaceId)
 end

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethereon - TC2 Script</title>
+    <title>Ethereon Script Hub - Premium Roblox Scripts</title>
     <style>
         * {
             margin: 0;
@@ -13,262 +13,433 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #0d0d0d;
+            background: #0a0a0a;
             color: #e1e1e1;
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
         }
 
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header/Navigation */
         header {
-            padding: 2rem 0;
-            text-align: center;
-            border-bottom: 1px solid #1f1f1f;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .logo {
-            font-size: 3rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.02em;
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .tagline {
-            font-size: 1rem;
-            color: #888;
-            font-weight: 400;
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
         }
 
-        .hero-section {
-            padding: 3rem 0;
+        .nav-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
             text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
         }
 
         .hero-title {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #ffffff;
-            line-height: 1.3;
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #b0b0b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
         }
 
-        .hero-description {
-            font-size: 1rem;
-            color: #b0b0b0;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #888;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-section {
+        .hero-cta {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            align-items: center;
-            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 28px;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.15s ease;
-            font-family: inherit;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary {
-            background: #dc2626;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
         }
 
         .btn-primary:hover {
-            background: #b91c1c;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
         }
 
         .btn-secondary {
-            background: #1a1a1a;
+            background: rgba(255, 255, 255, 0.05);
             color: #e1e1e1;
-            border: 1px solid #333;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn-secondary:hover {
-            background: #262626;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        .status {
-            color: #22c55e;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
-        }
-
-        .features-section {
-            padding: 3rem 0;
-            border-top: 1px solid #1f1f1f;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            color: #ffffff;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: #151515;
-            border: 1px solid #262626;
-            padding: 2rem;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .feature-card:hover {
-            border-color: #404040;
-            background: #181818;
-        }
-
-        .feature-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 1rem;
-        }
-
-        .feature-icon {
-            width: 32px;
-            height: 32px;
-            background: #dc2626;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
+        .btn-key {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
         }
 
-        .feature-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #ffffff;
+        .btn-key:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
         }
 
-        .feature-description {
-            color: #b0b0b0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-        }
-
-        .feature-specs {
-            font-size: 0.85rem;
-            color: #888;
-            font-style: italic;
-        }
-
-        .script-section {
-            padding: 3rem 0;
-            border-top: 1px solid #1f1f1f;
-        }
-
-        .script-container {
-            max-width: 800px;
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 4rem 0;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .script-warning {
-            background: #1a1a1a;
-            border-left: 4px solid #dc2626;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            border-radius: 0 4px 4px 0;
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .warning-title {
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: #888;
+            margin-top: 0.5rem;
+        }
+
+        /* Featured Scripts */
+        .featured-section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .script-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .script-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #dc2626, #ef4444);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .script-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .script-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .script-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(220, 38, 38, 0.2);
             color: #dc2626;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .script-title {
+            font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .warning-text {
-            color: #b0b0b0;
+        .script-game {
+            color: #888;
             font-size: 0.9rem;
-        }
-
-        .script-box {
-            background: #0a0a0a;
-            border: 1px solid #333;
-            border-radius: 4px;
-            padding: 1.5rem;
-            font-family: 'SF Mono', Monaco, monospace;
-            font-size: 0.9rem;
-            color: #22c55e;
-            word-break: break-all;
-            position: relative;
             margin-bottom: 1rem;
         }
 
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #1a1a1a;
-            color: #e1e1e1;
-            border: 1px solid #333;
-            padding: 6px 12px;
-            border-radius: 4px;
+        .script-description {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .script-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .script-category {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .script-load {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: none;
             cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.15s ease;
-            font-family: inherit;
+            transition: all 0.2s;
         }
 
-        .copy-btn:hover {
-            background: #262626;
+        .script-load:hover {
+            transform: scale(1.05);
         }
 
+        /* Key System Section */
+        .key-section {
+            padding: 6rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .key-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .key-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .key-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .key-step {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-desc {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* All Scripts Section */
+        .all-scripts {
+            padding: 6rem 0;
+        }
+
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .script-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .script-item:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .script-item-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .script-item-game {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .script-item-btn {
+            width: 100%;
+            background: rgba(220, 38, 38, 0.1);
+            color: #dc2626;
+            padding: 0.6rem;
+            border-radius: 8px;
+            border: 1px solid rgba(220, 38, 38, 0.2);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .script-item-btn:hover {
+            background: rgba(220, 38, 38, 0.2);
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        /* Discord Section */
         .discord-section {
-            padding: 3rem 0;
-            border-top: 1px solid #1f1f1f;
-            background: #111;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, rgba(88, 101, 242, 0.1) 0%, rgba(88, 101, 242, 0.05) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .discord-content {
@@ -277,230 +448,463 @@
             text-align: center;
         }
 
-        .discord-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+        .discord-icon {
+            font-size: 4rem;
             margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .discord-description {
-            color: #b0b0b0;
-            margin-bottom: 2rem;
         }
 
         .discord-btn {
             background: #5865f2;
             color: white;
-            padding: 12px 28px;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-weight: 500;
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
             text-decoration: none;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.15s ease;
-            font-family: inherit;
+            gap: 0.5rem;
+            transition: all 0.3s;
+            margin-top: 2rem;
         }
 
         .discord-btn:hover {
             background: #4752c4;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(88, 101, 242, 0.4);
         }
 
+        /* Footer */
         footer {
-            padding: 2rem 0;
-            border-top: 1px solid #1f1f1f;
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             text-align: center;
             color: #666;
-            font-size: 0.9rem;
         }
 
-        .footer-disclaimer {
-            margin-top: 0.5rem;
-            font-size: 0.8rem;
-            color: #555;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .script-code {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #22c55e;
+            word-break: break-all;
+            margin: 1rem 0;
+            position: relative;
+        }
+
+        .copy-script-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .copy-script-btn:hover {
+            transform: translateY(-2px);
         }
 
         @media (max-width: 768px) {
-            .logo {
+            .hero-title {
                 font-size: 2.5rem;
             }
-            
-            .hero-title {
-                font-size: 1.8rem;
+
+            .nav-links {
+                gap: 1rem;
             }
-            
-            .cta-section {
-                flex-direction: column;
-            }
-            
-            .features-grid {
+
+            .featured-grid,
+            .scripts-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">ETHEREON</div>
-            <div class="tagline">TC2 Enhancement Script</div>
-        </header>
+    <div class="bg-animation"></div>
 
-        <div class="hero-section">
-            <h1 class="hero-title">Advanced Typical Colors 2 Script</h1>
-            <p class="hero-description">
-                Comprehensive cheat script featuring aimbot, ESP, speed hacks, and other enhancements. 
-                Designed for competitive advantage with built-in anti-detection systems.
+    <header>
+        <nav>
+            <div class="logo">ETHEREON</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#scripts">Scripts</a>
+                <a href="#key">Get Key</a>
+                <a href="https://discord.gg/ZV2ffGMv8W" class="nav-btn" target="_blank">Discord</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero" id="home">
+            <h1 class="hero-title">ETHEREON SCRIPT HUB</h1>
+            <p class="hero-subtitle">
+                Premium Roblox script collection with 40+ games supported. 
+                Mobile & PC compatible with modern UI and regular updates.
             </p>
-            <div class="cta-section">
-                <button class="btn btn-primary" onclick="copyScript()">
-                    Get Script
+            <div class="hero-cta">
+                <button class="btn btn-primary" onclick="copyHubScript()">
+                    📦 Load Hub Script
                 </button>
-                <a href="ethereon.downy.press/discord" class="btn btn-secondary" target="_blank">
-                    Discord Server
+                <a href="#key" class="btn btn-key">
+                    🔑 Get Key
+                </a>
+                <a href="https://discord.gg/ZV2ffGMv8W" class="btn btn-secondary" target="_blank">
+                    💬 Join Discord
                 </a>
             </div>
-            <div class="status">
-                <span class="status-dot"></span>
-                Status: Online & Updated
+        </section>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">40+</div>
+                <div class="stat-label">Total Scripts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Featured Scripts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Mobile Compatible</div>
             </div>
         </div>
 
-<script src="https://cdn.work.ink/js/redirect.js?id=1664" data-url="https://work.ink/direct/1664" data-max="25"></script>
-
-        <div class="features-section">
-            <h2 class="section-title">Features</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">🎯</div>
-                        <h3 class="feature-title">Aimbot</h3>
-                    </div>
-                    <p class="feature-description">
-                        Advanced aimbot with customizable FOV, target prediction, and smoothing. 
-                        Supports multiple targeting modes including head/body prioritization.
+        <section class="featured-section" id="featured">
+            <div class="section-header">
+                <h2 class="section-title">Featured Scripts</h2>
+                <p class="section-subtitle">Our most popular and powerful scripts</p>
+            </div>
+            <div class="featured-grid">
+                <div class="script-card">
+                    <span class="script-badge">⭐ FEATURED</span>
+                    <h3 class="script-title">Ethereon TC2</h3>
+                    <p class="script-game">Typical Colors 2</p>
+                    <p class="script-description">
+                        Advanced aimbot, ESP, and utility features. Includes wallhacks, auto-aim, and performance optimizations.
                     </p>
-                    <p class="feature-specs">Configurable aim key, FOV circle, target switching</p>
+                    <div class="script-meta">
+                        <span class="script-category">Combat</span>
+                        <button class="script-load" onclick="loadScript('Ethereon TC2', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load Script</button>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">👁️</div>
-                        <h3 class="feature-title">ESP / Wallhack</h3>
-                    </div>
-                    <p class="feature-description">
-                        See enemies through walls with player boxes, health bars, distance indicators, 
-                        and team identification. Customizable colors and transparency settings.
+                <div class="script-card">
+                    <span class="script-badge">⭐ FEATURED</span>
+                    <h3 class="script-title">Grass Incremental GUI</h3>
+                    <p class="script-game">Grass Incremental</p>
+                    <p class="script-description">
+                        Premium GUI loader with advanced features and modern interface design. High-quality user experience.
                     </p>
-                    <p class="feature-specs">Box ESP, name tags, health display, distance calculation</p>
+                    <div class="script-meta">
+                        <span class="script-category">Utility</span>
+                        <button class="script-load" onclick="loadScript('Grass Incremental', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load Script</button>
+                    </div>
                 </div>
 
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">⚡</div>
-                        <h3 class="feature-title">Speed Hacks</h3>
-                    </div>
-                    <p class="feature-description">
-                        Movement speed modification, jump height increase, and fly mode. 
-                        Includes walkspeed multiplier and noclip functionality.
+                <div class="script-card">
+                    <span class="script-badge">⭐ FEATURED</span>
+                    <h3 class="script-title">Camlock/Mags</h3>
+                    <p class="script-game">Universal</p>
+                    <p class="script-description">
+                        FREE + KEYLESS combat enhancement featuring camlock, mags, and anti-travel protection. Advanced PvP utilities.
                     </p>
-                    <p class="feature-specs">Speed multiplier, jump power, fly mode, noclip</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">🔫</div>
-                        <h3 class="feature-title">Weapon Mods</h3>
+                    <div class="script-meta">
+                        <span class="script-category">Combat</span>
+                        <button class="script-load" onclick="loadScript('Camlock/Mags', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load Script</button>
                     </div>
-                    <p class="feature-description">
-                        Remove weapon recoil, eliminate spread, instant reload, and infinite ammunition. 
-                        Automatic fire rate modification for semi-automatic weapons.
-                    </p>
-                    <p class="feature-specs">No recoil, no spread, instant reload, rapid fire</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">🛡️</div>
-                        <h3 class="feature-title">Anti-Cheat Bypass</h3>
-                    </div>
-                    <p class="feature-description">
-                        Built-in protection against Roblox anti-cheat systems. Regular updates 
-                        to maintain undetected status and prevent account bans.
-                    </p>
-                    <p class="feature-specs">Humanized movements, detection avoidance, regular updates</p>
-                </div>
-
-                <div class="feature-card">
-                    <div class="feature-header">
-                        <div class="feature-icon">⚙️</div>
-                        <h3 class="feature-title">GUI & Settings</h3>
-                    </div>
-                    <p class="feature-description">
-                        Intuitive configuration menu with keybind customization, feature toggles, 
-                        and real-time adjustments. Save/load configuration profiles.
-                    </p>
-                    <p class="feature-specs">Customizable hotkeys, config saving, toggle switches</p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="script-section">
-            <h2 class="section-title">Script</h2>
-            <div class="script-container">
-                <div class="script-warning">
-                    <div class="warning-title">Important Notice</div>
-                    <div class="warning-text">
-                        Use of this script may result in account penalties. Execute at your own risk and ensure you're using a secure executor.
-                    </div>
-                </div>
+        <section class="key-section" id="key">
+            <div class="key-content">
+                <div class="key-icon">🔑</div>
+                <h2 class="section-title">Get Your Key</h2>
+                <p class="section-subtitle">Some scripts require a key for access. Get yours in 3 easy steps:</p>
                 
-                <div class="script-box" id="scriptBox">
-                    <button class="copy-btn" onclick="copyScript()">Copy</button>
-                    loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/136e9ef07454c3b3977dbbe6615e1531c53d3d22d8b942d91c047cca0c1ebcec/download"))()
+                <div class="key-steps">
+                    <div class="key-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Visit Key Page</div>
+                        <p class="step-desc">Click the button below</p>
+                    </div>
+                    <div class="key-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Complete Tasks</div>
+                        <p class="step-desc">Follow simple steps</p>
+                    </div>
+                    <div class="key-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Get Your Key</div>
+                        <p class="step-desc">Copy and use it</p>
+                    </div>
+                </div>
+
+                <a href="https://ethereon.downy.press/get-key/" class="btn btn-key" target="_blank">
+                    🔑 Get Key Now
+                </a>
+            </div>
+        </section>
+
+        <section class="all-scripts" id="scripts">
+            <div class="section-header">
+                <h2 class="section-title">All Scripts</h2>
+                <p class="section-subtitle">Browse our complete collection of 40+ scripts</p>
+            </div>
+            <div class="scripts-grid">
+                <div class="script-item">
+                    <h4 class="script-item-title">99 Nights Combat</h4>
+                    <p class="script-item-game">99 Nights in the Forest</p>
+                    <button class="script-item-btn" onclick="loadScript('99 Nights', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
+                </div>
+                <div class="script-item">
+                    <h4 class="script-item-title">Anime Rails</h4>
+                    <p class="script-item-game">Anime Rails [Alpha]</p>
+                    <button class="script-item-btn" onclick="loadScript('Anime Rails', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
+                </div>
+                <div class="script-item">
+                    <h4 class="script-item-title">Mobile Dex Explorer</h4>
+                    <p class="script-item-game">Universal</p>
+                    <button class="script-item-btn" onclick="loadScript('Dex', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
+                </div>
+                <div class="script-item">
+                    <h4 class="script-item-title">Eclipseware NDS</h4>
+                    <p class="script-item-game">Natural Disaster Survival</p>
+                    <button class="script-item-btn" onclick="loadScript('NDS', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
+                </div>
+                <div class="script-item">
+                    <h4 class="script-item-title">Prison Life</h4>
+                    <p class="script-item-game">Prison Life</p>
+                    <button class="script-item-btn" onclick="loadScript('Prison Life', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
+                </div>
+                <div class="script-item">
+                    <h4 class="script-item-title">Universal AI ChatBot</h4>
+                    <p class="script-item-game">Universal</p>
+                    <button class="script-item-btn" onclick="loadScript('AI Chat', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
+                </div>
+                <div class="script-item">
+                    <h4 class="script-item-title">Work at Pizza Place Troll</h4>
+                    <p class="script-item-game">Work At A Pizza Place</p>
+                    <button class="script-item-btn" onclick="loadScript('Pizza Troll', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
+                </div>
+                <div class="script-item">
+                    <h4 class="script-item-title">Emergency Hamburg</h4>
+                    <p class="script-item-game">Emergency Hamburg</p>
+                    <button class="script-item-btn" onclick="loadScript('Emergency', 'loadstring(game:HttpGet(\"https://ethereon.downy.press/Key-System.lua\"))()')">Load</button>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="discord-section">
+        <section class="discord-section">
             <div class="discord-content">
-                <h2 class="discord-title">Join Our Discord</h2>
-                <p class="discord-description">
+                <div class="discord-icon">💬</div>
+                <h2 class="section-title">Join Our Community</h2>
+                <p class="section-subtitle">
                     Get support, updates, and connect with other users. Access to configuration guides and troubleshooting help.
                 </p>
                 <a href="https://discord.gg/ZV2ffGMv8W" class="discord-btn" target="_blank">
-                    Join Server
+                    Join Discord Server
                 </a>
             </div>
-        </div>
+        </section>
+    </main>
 
-        <footer>
-            <p>&copy; 2025 Ethereon Hub</p>
-            <p class="footer-disclaimer">This script is for educational purposes only. Use responsibly.</p>
-        </footer>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#scripts">Scripts</a>
+                <a href="https://discord.gg/ZV2ffGMv8W" target="_blank">Discord</a>
+                <a href="https://ethereon.downy.press/get-key/" target="_blank">Get Key</a>
+            </div>
+            <p>&copy; 2025 Ethereon Hub. All rights reserved.</p>
+            <p style="margin-top: 0.5rem; color: #555; font-size: 0.85rem;">For educational purposes only. Use responsibly.</p>
+        </div>
+    </footer>
+
+    <!-- Script Modal -->
+    <div class="modal" id="scriptModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <h3 class="modal-title" id="modalTitle">Script Code</h3>
+            <div class="script-code" id="scriptCode"></div>
+            <button class="copy-script-btn" onclick="copyModalScript()">Copy to Clipboard</button>
+        </div>
     </div>
 
     <script>
-        function copyScript() {
-            const scriptText = 'loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/136e9ef07454c3b3977dbbe6615e1531c53d3d22d8b942d91c047cca0c1ebcec/download"))()';
-            
-            navigator.clipboard.writeText(scriptText).then(function() {
-                const btn = document.querySelector('.copy-btn');
+        const hubLoadstring = 'loadstring(game:HttpGet("https://ethereon.downy.press/Key-System.lua"))()';
+
+        function copyHubScript() {
+            navigator.clipboard.writeText(hubLoadstring).then(() => {
+                showNotification('Script copied to clipboard!');
+            }).catch(err => {
+                console.error('Copy failed:', err);
+                showNotification('Failed to copy script');
+            });
+        }
+
+        function loadScript(name, code) {
+            document.getElementById('modalTitle').textContent = name + ' - Script Code';
+            document.getElementById('scriptCode').textContent = code;
+            document.getElementById('scriptModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('scriptModal').classList.remove('active');
+        }
+
+        function copyModalScript() {
+            const code = document.getElementById('scriptCode').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = event.target;
                 const originalText = btn.textContent;
-                btn.textContent = 'Copied!';
-                btn.style.background = '#22c55e';
+                btn.textContent = '✓ Copied!';
+                btn.style.background = 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)';
                 
                 setTimeout(() => {
                     btn.textContent = originalText;
-                    btn.style.background = '#1a1a1a';
+                    btn.style.background = 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)';
                 }, 2000);
-            }).catch(function(err) {
+            }).catch(err => {
                 console.error('Copy failed:', err);
             });
         }
+
+        function showNotification(message) {
+            const notif = document.createElement('div');
+            notif.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                z-index: 10000;
+                font-weight: 600;
+                animation: slideIn 0.3s ease;
+            `;
+            notif.textContent = message;
+            document.body.appendChild(notif);
+
+            setTimeout(() => {
+                notif.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notif.remove(), 300);
+            }, 3000);
+        }
+
+        // Close modal on outside click
+        document.getElementById('scriptModal').addEventListener('click', (e) => {
+            if (e.target.id === 'scriptModal') {
+                closeModal();
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
     </script>
+
+    <style>
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+    </style>
 </body>
 </html>
